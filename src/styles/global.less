@@ -1,0 +1,96 @@
+// 为了让高度也能用百分比
+html,
+body {
+  height: 100%;
+  width: 100%;
+  // background-color: #F5F5F5;
+}
+
+// 清除浮动
+.clear:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.clear {
+  zoom: 1;
+}
+
+// 清除浮动的
+.clearfix {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  clear: both;
+}
+
+// 单行文本显示省略号
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 鼠标手型
+.pointer {
+  cursor: pointer;
+}
+
+// 文本不让选择
+.noselect {
+  user-select: none;
+}
+
+//transform上下左右居中
+.ctt {  
+	position: absolute;
+	top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//定位上下左右居中
+.ctp(@width, @height) {  
+	position: absolute;
+	top: 50%;
+  left: 50%;
+  margin-top: -@height/2;
+  margin-left: -@width/2;
+}
+
+//定位上下居中
+.tb {  
+	position: absolute;
+	top: 50%;
+  transform: translateY(-50%);
+}
+
+//定位左右居中
+.lr {  
+	position: absolute;
+	left: 50%;
+  transform: translateX(-50%);
+}
+
+//鼠标hover显示下划线
+.hoverLine(@height:2px,@color:@color-text-primary){
+  position: relative;
+  &:hover::after{
+    content: '';
+    position: absolute;
+    height:@height;
+    width: 100%;
+    background-color: @color;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.multiEllipsis(@line:2){
+  overflow : hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @line;
+  -webkit-box-orient: vertical;
+}
