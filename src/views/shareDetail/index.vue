@@ -8,15 +8,15 @@
     <netError v-else-if="isNetError"></netError>
     <!-- 有视频,且不是微信环境 st -->
     <div v-else style="margin-top: 1.706667rem;">
-      <div v-if="isVideo" class="video-wrapper">
-        <xg-player id="player"
-          :url="player.url"
-          :height="player.height"
-          :autoplay="player.autoplay"
-          :poster="player.poster"
-          ref="xgplayer">
-        </xg-player>
-      </div>
+<!--      <div v-if="isVideo" class="video-wrapper">-->
+<!--        <xg-player id="player"-->
+<!--          :url="player.url"-->
+<!--          :height="player.height"-->
+<!--          :autoplay="player.autoplay"-->
+<!--          :poster="player.poster"-->
+<!--          ref="xgplayer">-->
+<!--        </xg-player>-->
+<!--      </div>-->
       <!-- 有视频，且是微信环境 -->
       <!-- <div v-if="isVideo && isWeichat()" class="video-wrapper-inwx" :style="{height: player.height}">
           <img :src="player.poster" alt="">
@@ -90,7 +90,7 @@ import Loading from '@/components/Loading'
 // 引入按钮水波纹指令
 import waves from '@/directive/waves'
 // 引入播放器
-import xgPlayer from '@/components/XgPlayer'
+// import xgPlayer from '@/components/XgPlayer'
 // 引入Api
 import { addUserbrowseCntApi, commentListApi, contInfoApi } from '@/api/detail'
 // 引入删除页，审核不通过页面，加载异常，网络异常
@@ -108,7 +108,7 @@ import blockImg from '../../assets/img_block.png'
 import avatar from '@/components/AVATAR/'
 export default {
   components: {
-    'xg-player': xgPlayer,
+    // 'xg-player': xgPlayer,
     Loading,
     AppHeaderBar,
     contError,
