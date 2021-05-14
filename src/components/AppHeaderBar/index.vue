@@ -2,21 +2,26 @@
   <div class="bar">
     <div class="left">
       <div class="img-wrap">
-        <img src="../../assets/IconCopy@3x.png" alt="">
+<!--        <img src="../../assets/IconCopy@3x.png" alt="">-->
       </div>
       <div class="info">
-        <p class="name">光芒App</p>
-        <p class="desc">引领时尚的人都在这里</p>
+        {{ slogan }}
       </div>
     </div>
     <div class="btn-wrap">
-      <div class="btn" @click="openApp">打开</div>
+      <div class="btn" @click="openApp">下载APP</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    slogan: {
+      type: String,
+      default: '认识顺路的人'
+    }
+  },
   methods: {
     openApp () {
       window.location.href = 'http://url.cn/553SnHV'
@@ -28,24 +33,26 @@ export default {
 <style lang="less" scoped>
 .bar {
   width: 100%;
-  height: 1.706667rem;
+  height: 60px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 5000;
-  padding: 0 .533333rem;
+  padding: 0 16px;
   box-sizing: border-box;
+  border-bottom: 1px solid #f6f6f6;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.7);
+  background: #FFFFFF;
   .left {
     display: flex;
     align-items: center;
     .img-wrap {
-      line-height: 1.706667rem;
-      width: 1.333333rem;
-      height: 1.333333rem;
+      background: #e2e2e2;
+      border-radius: 5px;
+      width: 38px;
+      height: 38px;
       overflow: hidden;
       img {
         width: 100%;
@@ -53,34 +60,24 @@ export default {
       }
     }
     .info {
+      font-size: 15px;
       text-align: left;
-      color: #fff;
-      margin-left: .533333rem;
-      .name {
-        font-size: .426667rem;
-        line-height: .426667rem;
-        letter-spacing: .007467rem;
-      }
-      .desc {
-        margin-top: .106667rem;
-        font-size: .373333rem;
-        line-height: .373333rem;
-        font-family: 'PingFangSC-Light';
-      }
+      color: #151515;
+      margin-left: 12px;
+      font-weight: bold;
     }
   }
   .btn-wrap {
-   justify-self: flex-end;
-    float: right;
     .btn {
-      width: 1.6rem;
-      height: .8rem;
-      line-height: .8rem;
+      display: flex;
+      align-items: center;
+      background: #00c584;
+      height: 30px;
+      padding: 0 10px;
+      font-size: 13px;
       text-align: center;
-      font-size: .373333rem;
-      color: #FF5A5F;
-      background: #fff;
-      border-radius: .133333rem;
+      color: #ffffff;
+      border-radius: 17px;
     }
   }
 }

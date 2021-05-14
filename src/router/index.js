@@ -7,89 +7,138 @@ vue.use(Router)
 const router = new Router({
   routes: [
     {
+      path: '/sharedynamic', // 分享的详情页 ()
+      name: 'sharedynamic',
+      component: (resolve) => {
+        require(['@/views/dynamic/index'], resolve)
+      }
+    },
+    {
       path: '/sharedetail', // 分享的详情页 ()
       name: 'sharedetail',
-      component: (resolve) => { require(['@/views/sharedetail/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/sharedetail/index'], resolve)
+      }
     }, {
       path: '/detail', // 详情页()
       name: 'detail',
-      component: (resolve) => { require(['@/views/detail/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/detail/index'], resolve)
+      }
     }, {
       path: '/aboutus', // 关于我们
       name: 'aboutus',
-      component: (resolve) => { require(['@/views/aboutus/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/aboutus/index'], resolve)
+      }
     }, {
       path: '/communityRule', // 社区规则
       name: 'communityRule',
-      component: (resolve) => { require(['@/views/aboutus/communityRule/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/aboutus/communityRule/index'], resolve)
+      }
     }, {
       path: '/useRule', // 使用协议(安卓)
       name: 'useRule',
-      component: (resolve) => { require(['@/views/aboutus/useRule/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/aboutus/useRule/index'], resolve)
+      }
     }, {
       path: '/useRuleIos', // 使用协议(ios)
       name: 'useRuleIos',
-      component: (resolve) => { require(['@/views/aboutus/useRule/ios'], resolve) }
+      component: (resolve) => {
+        require(['@/views/aboutus/useRule/ios'], resolve)
+      }
     }, {
       path: '/privacy', // 隐私政策
       name: 'privacy',
-      component: (resolve) => { require(['@/views/aboutus/privacy/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/aboutus/privacy/index'], resolve)
+      }
     }, {
       path: '/surprise', // 惊喜首页(没有用到)
       name: 'surprise',
-      component: (resolve) => { require(['@/views/surprise/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/surprise/index'], resolve)
+      }
     }, {
       path: '/surprise/introduce', // 惊喜介绍 (没用到)
       name: 'introduce',
-      component: (resolve) => { require(['@/views/surprise/introduce/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/surprise/introduce/index'], resolve)
+      }
     }, {
       path: '/surprise/raiders', // 惊喜-攻略页(没用到)
       name: 'raiders',
-      component: (resolve) => { require(['@/views/surprise/raiders/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/surprise/raiders/index'], resolve)
+      }
     }, {
       path: '/power/detail', // 能量值明细(没用到)
       name: 'powerDetail',
-      component: (resolve) => { require(['@/views/power/detail/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/power/detail/index'], resolve)
+      }
     }, {
       path: '/power/raking', // 能量值排行榜(没用到)
       name: 'powerRaking',
-      component: (resolve) => { require(['@/views/power/raking/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/power/raking/index'], resolve)
+      }
     }, {
       path: '/credits/mine', // 我的积分
       name: 'creditsMine',
-      component: (resolve) => { require(['@/views/credits/mine/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/credits/mine/index'], resolve)
+      }
     }, {
       path: '/credits/rule', // 我的积分
       name: 'creditsRule',
-      component: (resolve) => { require(['@/views/credits/rule/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/credits/rule/index'], resolve)
+      }
     }, {
       path: '/gift/creditsGiftDetail', // 积分礼物详情
       name: 'creditsGiftDetail',
-      component: (resolve) => { require(['@/views/gift/creditsGiftDetail/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/gift/creditsGiftDetail/index'], resolve)
+      }
     }, {
       path: '/sharePersonalPage', // 分享出去的个人主页
       name: 'sharePersonalPage',
-      component: (resolve) => { require(['@/views/sharePersonalPage/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/sharePersonalPage/index'], resolve)
+      }
     }, {
       path: '/lotteryDetail', // 抽奖明细页 (没用到)
       name: 'lotteryDetail',
-      component: (resolve) => { require(['@/views/lotteryDetail/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/lotteryDetail/index'], resolve)
+      }
     }, {
       path: '/empty', // 抽奖明细页
       name: 'empty',
-      component: (resolve) => { require(['@/views/empty'], resolve) }
+      component: (resolve) => {
+        require(['@/views/empty'], resolve)
+      }
     }, {
       path: '/sharelottery', // 分享抽奖页
       name: 'sharelottery',
-      component: (resolve) => { require(['@/views/sharelottery/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/sharelottery/index'], resolve)
+      }
     }, {
       path: '/shareactivity', // 分享活动页
       name: 'shareactivity',
-      component: (resolve) => { require(['@/views/shareActivity/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/shareActivity/index'], resolve)
+      }
     }, {
       path: '/sharetopic', // 分享活动页
       name: 'sharetopic',
-      component: (resolve) => { require(['@/views/shareTopic/index'], resolve) }
+      component: (resolve) => {
+        require(['@/views/shareTopic/index'], resolve)
+      }
     }
   ]
 })
