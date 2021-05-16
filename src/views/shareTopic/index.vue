@@ -1,9 +1,9 @@
 <template>
   <div class="activy-root">
-    <Loading v-if="isLoading"></Loading>
-    <contError v-else-if="isContError"></contError>
-    <netError v-else-if="isNetError"></netError>
-    <div class="conten" v-else>
+<!--    <Loading v-if="isLoading"></Loading>-->
+<!--    <contError v-else-if="isContError"></contError>-->
+<!--    <netError v-else-if="isNetError"></netError>-->
+    <div class="conten">
       <quick-loadmore ref="vueLoad"
         :bottom-method="handleBottom"
         :disable-top="true"
@@ -11,7 +11,18 @@
         :bottomDistance="80"
         style="margin-bottom: 50px;"
       >
-        <AppHeaderBar openPage="event" :eventId="this.$route.query.eventId" @showMask="showMask"></AppHeaderBar>
+        <AppHeaderBar slogan="上班族的邂逅神器" />
+        <div class="topic">
+          <img src="../../assets/way/huati2@2x.png"/>
+          <img class="topic-title-pic" src="../../assets/way/#@2x.png"/>
+          <div class="topic-title">搭讪</div>
+          <div class="topic-number">256人<span>正在参与</span></div>
+          <div class="attention">
+            <img src="../../assets/way/+@2x.png"/>
+            <span>关注</span>
+          </div>
+        </div>
+        <Operate v-waves/>
         <Layer id="MASK" @closeMask="closeMask" style="display: none;"></Layer>
         <!-- 轮播或单张图 -->
         <div class="swipper-wrapper">
@@ -128,9 +139,11 @@ import TitleAndInfo from '@/views/shareActivity/components/TitleAndInfo'
 import UserInfo from '@/components/common/userinfo/UserInfo'
 import MorePeople from '@/components/common/userinfo/MorePeople'
 import ItemInfo from '@/views/shareActivity/components/ItemInfo'
+import Operate from '@/components/common/operate'
 export default {
   components: {
     AppHeaderBar,
+    Operate,
     Layer,
     Loading,
     contError,
@@ -404,10 +417,64 @@ export default {
 <style lang="less" scoped>
 .conten{
   box-sizing: border-box;
+  margin-top: 60px;
   // padding-top: 1.706667rem;
   overflow: scroll;
   width: 100%;
   height: 100%;
+  .topic {
+    position: relative;
+    height: 76px;
+    color: #ffffff;
+    img {
+      width: 100%;
+    }
+    .topic-title-pic {
+      position: absolute;
+      top: 19px;
+      left: 14px;
+      width: 20px;
+      height: 20px;
+    }
+    .topic-title {
+      position: absolute;
+      top: 15px;
+      left: 42px;
+      font-size: 20px;
+      font-weight: bolder;
+      text-align: center;
+      line-height: 28px;
+    }
+    .topic-number {
+      position: absolute;
+      bottom: 12px;
+      line-height: 17px;
+      left: 15px;
+      font-size: 10px;
+      span {
+        font-size: 8px;
+      }
+    }
+    .attention {
+      position: absolute;
+      top: 27px;
+      right: 14px;
+      width: 68px;
+      height: 30px;
+      background: #ffffff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bolder;
+      color: #00C584;
+      img {
+        margin-right: 4px;
+        width: 12px;
+      }
+    }
+  }
 }
 .swipper-wrapper {
   position: relative;

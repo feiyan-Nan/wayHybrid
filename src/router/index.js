@@ -14,6 +14,13 @@ const router = new Router({
       }
     },
     {
+      path: '/sharetopic', // 分享活动页
+      name: 'sharetopic',
+      component: (resolve) => {
+        require(['@/views/shareTopic/index'], resolve)
+      }
+    },
+    {
       path: '/sharedetail', // 分享的详情页 ()
       name: 'sharedetail',
       component: (resolve) => {
@@ -132,12 +139,6 @@ const router = new Router({
       name: 'shareactivity',
       component: (resolve) => {
         require(['@/views/shareActivity/index'], resolve)
-      }
-    }, {
-      path: '/sharetopic', // 分享活动页
-      name: 'sharetopic',
-      component: (resolve) => {
-        require(['@/views/shareTopic/index'], resolve)
       }
     }
   ]

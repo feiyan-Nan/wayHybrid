@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import {appPkgUrl} from '../../config'
+
 export default {
   props: {
     slogan: {
@@ -24,7 +26,7 @@ export default {
   },
   methods: {
     openApp () {
-      window.location.href = 'http://url.cn/553SnHV'
+      window.location.href = appPkgUrl
     }
   }
 }

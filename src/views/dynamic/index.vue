@@ -1,91 +1,20 @@
 <template>
   <div class="rootEl">
-    <AppHeaderBar></AppHeaderBar>
-    <Loading v-if="isLoading"></Loading>
-    <contDeleted v-else-if="isContDeleted"></contDeleted>
-    <contError v-else-if="isContError"></contError>
-    <contUnpass v-else-if="isContUnpass"></contUnpass>
-    <netError v-else-if="isNetError"></netError>
-    <!-- 有视频,且不是微信环境 st -->
-    <div v-else style="margin-top: 1.706667rem;">
-      <!--      <div v-if="isVideo" class="video-wrapper">-->
-      <!--        <xg-player id="player"-->
-      <!--          :url="player.url"-->
-      <!--          :height="player.height"-->
-      <!--          :autoplay="player.autoplay"-->
-      <!--          :poster="player.poster"-->
-      <!--          ref="xgplayer">-->
-      <!--        </xg-player>-->
-      <!--      </div>-->
-      <!-- 有视频，且是微信环境 -->
-      <!-- <div v-if="isVideo && isWeichat()" class="video-wrapper-inwx" :style="{height: player.height}">
-          <img :src="player.poster" alt="">
-          <div class="play-button" @click="dnApp">
-            <div class="img-wrap">
-              <img src="../../assets/play-button.png" alt="">
-            </div>
-          </div>
-      </div> -->
-      <!-- 有视频 end -->
-      <!-- 是状态 且有轮播图 st -->
-      <div v-if="isStatus && info.images.length > 1" class="swiper-wrapper" >
-        <swiper id='swiper' class='swiper' ref='swiper' :options='swiperOption'>
-          <swiper-slide v-for='(item, index) in info.images' :key="index" style="width: 100%">
-            <div class="slide-item" :style="{height: item.height > maxHeight ? maxHeight + 'rem' : item.height + 'rem', width: '100%'}">
-              <img  v-lazy="item.src">
-              <p class="pagination" v-if="info.images && info.images.length > 1">{{index +1}}/{{info.images.length}} </p>
-            </div>
-          </swiper-slide>
-        </swiper>
-      </div>
-      <div v-if="isStatus && info.images.length == 1"  class="banner-wrapper" :style="{maxHeight: maxHeight + 'rem', width: '100%'}">
-        <img v-lazy="info.images[0].src" alt="" :style="{height: info.images[0].height + 'rem'}">
-      </div>
-      <!-- 是状态 且有轮播图 end -->
-      <div v-if="isArticle" class="banner-wrapper" :style="{maxHeight: maxHeight + 'rem'}">
-        <img v-lazy="info.coverSrc" alt="" :style="{height: info.coverHeight}">
-      </div>
-      <div v-if="isArticle && info.title">
-        <p class="article-title">{{info.title}}</p>
-        <div class="bar-small"></div>
-      </div>
-      <!-- 用户头像和用户名发布时间 -->
-      <publish-time :userinfo="info" @clickAvatar="clickAvatar" />
-      <div class="content-wrapper" id="content-wrapper">
-        <!-- 这是状态现实的内容 st-->
-        <p v-if="isStatus">{{info.text}}</p>
-        <!-- 这是状态现实的内容 end -->
-        <!-- 这是文章现实的内容  st -->
-        <!-- 如果是数组结构，启动懒加载写法 -->
-        <div v-if="isArticle">
-          <template v-if="info.contentArray && info.contentArray.length">
-            <p v-for="(item,index) in info.contentArray" :key="index" >
-              <span v-if="item.type =='text'" v-html="item.cont"></span>
-              <img v-if="item.type == 'img'" v-lazy="item.src" width="100%" :height="(clientWidth - 40) / item.width * item.height">
-            </p>
-          </template>
-          <!-- 如果不是数组结构，直接显示 -->
-          <template v-else>
-            <div v-html="info.content"></div>
-          </template>
-          <!-- 这是文章现实的内容 end -->
-        </div>
-      </div>
-      <div class="content-info">
-        <p class="read">{{info.cntReadStr}} {{isVideo ? '播放' : '阅读'}}</p>
-        <div class="clearfix"></div>
-        <p class="copyright" v-if="isCopyRightShow">
-          本文版权归该作者所有，任何形式转载请联系作者。本文仅代表作者个人观点，不代表本平台的立场
-        </p>
-      </div>
-      <user-info :userinfo="info" @clickCared="clickCared"></user-info>
-      <comment-list  @showComment="showComment" @clickLike="clickLike" @clickAvatar="clickAvatar" :cntComment="cntComment" :commentList="commentList"/>
+    <AppHeaderBar />
+    <div class="container">
+      <Operate v-waves/>
+      <Sex age="23" />
     </div>
+    <img src="../../assets/way/dynamic/img@2x.png"/>
+    <AppBottomBtn />
   </div>
 </template>
 
 <script>
 import AppHeaderBar from '@/components/AppHeaderBar'
+import AppBottomBtn from '@/components/AppBottomBtn'
+import Operate from '@/components/common/operate'
+import Sex from '@/components/common/userinfo/Sex'
 import Loading from '@/components/Loading'
 // 引入按钮水波纹指令
 import waves from '@/directive/waves'
@@ -109,6 +38,9 @@ import avatar from '@/components/AVATAR/'
 export default {
   components: {
     // 'xg-player': xgPlayer,
+    Operate,
+    AppBottomBtn,
+    Sex,
     Loading,
     AppHeaderBar,
     contError,
@@ -399,7 +331,10 @@ export default {
 </style>
 
 <style lang='less' scoped>
-@import '../detail/index';
+.container {
+  margin-top: 60px;
+  padding: 0 14px;
+}
 .loading {
   position: fixed;
   z-index: 10000;
