@@ -15,8 +15,8 @@
         <div class="topic">
           <img src="../../assets/way/huati2@2x.png"/>
           <img class="topic-title-pic" src="../../assets/way/#@2x.png"/>
-          <div class="topic-title">搭讪</div>
-          <div class="topic-number">256人<span>正在参与</span></div>
+          <div class="topic-title">{{ topicInfo.topicName }}</div>
+          <div class="topic-number">{{ topicInfo.interactivUsers }}人<span>正在参与</span></div>
           <div class="attention">
             <img src="../../assets/way/+@2x.png"/>
             <span>关注</span>
@@ -173,7 +173,8 @@ export default {
         }
       },
       originalTime: null,
-      eventId: '',
+      topicId: '',
+      topicInfo: {},
       pageNum: 1,
       isLoading: false,
       isNetError: false,
@@ -196,18 +197,18 @@ export default {
       loadList: [],
       eventStatus: 1,
       info: {},
-      eventResult: []
+      eventResult: [],
+      currentPage: 1
     }
   },
   mounted () {
-    console.log(this.loadList, 'hahhah')
-    let eventId = this.$route.query.eventId
-    let account = this.$route.query.account || 0
-    if (eventId) {
-      this.originalTime = new Date().getTime()
-      this.eventId = eventId
-      this.getCont({eventId, account})
-      this.getList({account, eventId: this.eventId, pageNum: this.pageNum, originalTime: this.originalTime})
+    let topicId = this.$route.query.topicId
+    console.log(topicId, 'hahhah')
+    if (topicId) {
+      // this.originalTime = new Date().getTime()
+      this.topicId = topicId
+      this.getCont(topicId)
+      this.getList(this.currentPage, topicId)
     } else {
       this.$vux.toast.text('参数错误')
     }
@@ -231,9 +232,10 @@ export default {
       this.pageNum += 1
       this.getList({account: '0', eventId: this.eventId, pageNum: this.pageNum, originalTime: this.originalTime})
     },
-    getList (obj) {
-      getContListApi(obj)
+    getList (currentPage, topicId) {
+      getContListApi(currentPage, topicId)
         .then(res => {
+          console.log(res)
           if (res.data.code == 2000) {
             res.data.data.forEach(item => {
               if (item.contStatus == 2) {
@@ -317,11 +319,13 @@ export default {
           }
         })
     },
-    getCont (obj) {
+    getCont (topicId) {
       let _this = this
       this.isLoading = true
-      getEventDetailApi(obj)
+      getEventDetailApi(topicId)
         .then(res => {
+          console.log(res.d, 555)
+          this.topicInfo = res.d.info
           this.isLoading = false
           if (res.data.code == 2000) {
             this.info = res.data.data

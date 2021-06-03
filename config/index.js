@@ -3,7 +3,19 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+function getIPAdress() {
+  let interfaces = require('os').networkInterfaces();
+  for (var devName in interfaces) {
+    var iface = interfaces[devName];
+    for (var i = 0; i < iface.length; i++) {
+      let alias = iface[i];
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+        // console.log(alias.address);
+        return alias.address
+      }
+    }
+  }
+}
 module.exports = {
   dev: {
     // Paths
@@ -11,7 +23,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/DEV_API': {
-        target: 'http://dev.cogo.club/api/gmapp',
+        target: 'http://api.woshunlu.com',
         // target: 'http://192.168.0.156:9999',
         changeOrigin: true,//允许跨域
         pathRewrite:{
@@ -20,7 +32,7 @@ module.exports = {
       }
     },
     // Various Dev Server settings
-    host: '127.0.0.1', // can be overwritten by process.env.HOST
+    host: getIPAdress(), // can be overwritten by process.env.HOST
     port: 8085, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

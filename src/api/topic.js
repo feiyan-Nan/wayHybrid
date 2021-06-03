@@ -4,17 +4,15 @@ import request from '@/utils/request'
 // 获取话题的详情
 export function getEventDetailApi (data) {
   return request({
-    url: '/event/v1/online/detail',
-    method: 'POST',
-    data
+    url: `/topic/h5/info?topicId=${data}`,
+    method: 'POST'
   })
 }
 
-//  线下话题讨论内容列表
-export function getContListApi (data) {
+//  话题讨论内容列表
+export function getContListApi (currentPage, topicId) {
   return request({
-    url: 'event/v1/online/topic/get_cont_list',
-    method: 'POST',
-    data
+    url: `userDynamic/h5/relation/recommend?currentPage=${currentPage}&topicId=${topicId}`,
+    method: 'GET',
   })
 }

@@ -2,7 +2,7 @@
   <div class="bar">
     <div class="left">
       <div class="img-wrap">
-<!--        <img src="../../assets/IconCopy@3x.png" alt="">-->
+        <img src="../../assets/way/logo.png" alt="">
       </div>
       <div class="info">
         {{ slogan }}
