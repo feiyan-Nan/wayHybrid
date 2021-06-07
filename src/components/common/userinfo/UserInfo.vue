@@ -1,20 +1,22 @@
 <template lang="pug">
   .author-wrapper
-    .container(:class="{border: isBorder}")
+    .container
       .author-img
         avatar(:src="userinfo.avatar" :isAuth="userinfo.isAuth" @click.native="clickAvatar")
       .author-info(@click="clickAvatar")
-        p.name.ellipsis {{userinfo.nickName}}
+        div.name.ellipsis {{userinfo.name}}
+          div.sex.male(v-if="userinfo.gender === 1")
+            img(src="@/assets/way/male.png")
+            span {{userinfo.age}}
+          div.sex.female(v-else)
+            img(src="@/assets/way/female.png")
+            span {{userinfo.age}}
         p.desc.ellipsis
-          span(v-if="userinfo.isAuth") {{userinfo.org ? userinfo.org : ''}} {{userinfo.authTitle}}
-          span(v-else-if="userinfo.signature !== ''") {{userinfo.signature}}
-          span(v-else) {{userinfo.cntFansStr}} 人关注
-      .wrap(v-if="userinfo.isOwner !== 1")
-        .attention-button(v-waves='' v-if="userinfo.isOwner == 0" @click.stop="clickCared" :class="userinfo.isFollow !== 0 ? ' active' : ''")
-          span(v-if="userinfo.beFollowed !== 0 && userinfo.isFollow !== 0") 互相关注
-          span(v-else) {{userinfo.isFollow !== 0 ? '已关注' : '关注'}}
-        .attention-button(v-waves='' v-else @click.stop="clickCared")
-          span 关注
+          span(v-if="userinfo.showTime") {{userinfo.showTime}}
+          span(v-else) {{userinfo.createTimeStr}}
+      .like-number(v-if="showLike" @click="clickAvatar")
+        span {{userinfo.likeCount}}
+        img(src="@/assets/way/dynamic/like.png")
 </template>
 
 <script>
@@ -34,9 +36,9 @@ export default {
       type: Object,
       default: () => {}
     },
-    isBorder: {
+    showLike: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   mounted () {},
@@ -58,14 +60,15 @@ export default {
 <style lang="less" scoped>
 .author-wrapper{
   margin-top: 20px;
-  padding: 0 20px;
+  padding: 0 14px;
   overflow: hidden;
   .container{
     width: 100%;
     box-sizing: border-box;
-    height: 100px;
+    //height: 80px;
     display: flex;
-    padding-top: 30px;
+    margin-bottom: 10px;
+    //padding-top: 30px;
     .author-img{
       flex: 0 0 40px;
       position: relative;
@@ -73,26 +76,66 @@ export default {
       height: 40px;
       float: left;
     }
+    .like-number {
+      font-size: 14px;
+      color: #a7a7a7;
+      display: inline-flex;
+      align-items: center;
+      img {
+        width: 23px;
+        height: 19px;
+        margin-left: 10px;
+      }
+    }
     .author-info{
       flex: 1;
       margin-left: 10px;
       width: calc(100% - 110px);
       .name{
-        font-size: 15px;
-        color: #2A2A2A;
+        font-size: 14px;
+        color: #808080;
         letter-spacing: 0;
         text-align: left;
         height: 16px;
         line-height: 16px;
         font-weight: 600;
+        display: flex;
+        align-items: center;
       }
       .desc{
         margin-top: 8px;
-        font-size: 12px;
-        color: #999999;
+        font-size: 10px;
+        color: #808080;
         letter-spacing: 0;
         text-align: left;
         width: 100%;
+      }
+      .sex {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 7px;
+        padding: 0 4px;
+        height: 14px;
+        //position: relative;
+        //display: inline-block;
+        //vertical-align: middle;
+        margin-left: 7px;
+        img {
+          height: 8px;
+          width: 8px;
+          margin-right: 1px;
+        }
+        span {
+          font-size: 8px;
+          color: #ffffff;
+          line-height: 14px;
+        }
+      }
+      .male {
+        background: #0591FF;
+      }
+      .female {
+        background: #FF76C5;
       }
     }
     .wrap{

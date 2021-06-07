@@ -1,13 +1,13 @@
 <template lang="pug">
   .operate-wrapper
     .like
-      img(src="../../../assets/common.png")
-      span 90
+      img(src="../../../assets/way/xin.png")
+      span {{countItem.likeCount}}
     .comment
-      img(src="../../../assets/common.png")
-      span 21
+      img(src="../../../assets/way/common.png")
+      span {{countItem.commentsCount}}
     .on-the-way
-      img(src="../../../assets/common.png")
+      img(src="../../../assets/way/byway.png")
       span 顺路么
 </template>
 
@@ -19,6 +19,10 @@ export default {
     name: {
       type: String,
       default: '认识顺路的人'
+    },
+    countItem: {
+      type: Object,
+      require: true
     }
   },
   methods: {
@@ -33,7 +37,7 @@ export default {
 .operate-wrapper {
   box-sizing: border-box;
   height: 40px;
-  padding: 0 12px;
+  padding: 0 28px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -43,10 +47,11 @@ export default {
     justify-content: center;
     align-items: center;
     color: #808080;
-    font-size: 10px;
+    font-size: 12px;
     img{
       width: 15px;
       height: 15px;
+      margin-right: 4px;
     }
   }
 }

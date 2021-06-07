@@ -13,6 +13,6 @@ export function getEventDetailApi (data) {
 export function getContListApi (currentPage, topicId) {
   return request({
     url: `userDynamic/h5/relation/recommend?currentPage=${currentPage}&topicId=${topicId}`,
-    method: 'GET',
+    method: 'GET'
   })
 }
