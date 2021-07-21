@@ -3,7 +3,7 @@
     <img class="line-symbol" src="../../../assets/way/line-symbol.png"/>
     <div class="line">
       <span>{{ wayinfo.location }}
-        <template v-if="wayinfo.wayPath[0]">·{{ wayinfo.wayPath[0].path }}</template>
+        <template v-if="wayinfo.wayPath && wayinfo.wayPath[0]">·{{ wayinfo.wayPath[0].path }}</template>
       </span>
       <img
         class="right-arrow"

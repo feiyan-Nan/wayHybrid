@@ -5,12 +5,13 @@
         avatar(:src="userinfo.avatar" :isAuth="userinfo.isAuth" @click.native="clickAvatar")
       .author-info(@click="clickAvatar")
         div.name.ellipsis {{userinfo.name}}
-          div.sex.male(v-if="userinfo.gender === 1")
-            img(src="@/assets/way/male.png")
-            span {{userinfo.age}}
-          div.sex.female(v-else)
-            img(src="@/assets/way/female.png")
-            span {{userinfo.age}}
+          template(v-if="userinfo.age !== -1")
+            div.sex.male(v-if="userinfo.gender === 1")
+              img(src="@/assets/way/male.png")
+              span {{userinfo.age}}
+            div.sex.female(v-else)
+              img(src="@/assets/way/female.png")
+              span {{userinfo.age}}
         p.desc.ellipsis
           span(v-if="userinfo.showTime") {{userinfo.showTime}}
           span(v-else) {{userinfo.createTimeStr}}

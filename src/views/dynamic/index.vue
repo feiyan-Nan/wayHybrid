@@ -1,43 +1,52 @@
 <template>
   <div class="rootEl">
     <AppHeaderBar/>
-    <div class="container">
-      <user-info
-        :userinfo="dynamicContent"
-        @clickAvatar="clickAvatar"
-        @clickCared="clickCared"
-      />
-      <div class="content">{{ dynamicContent.content }}</div>
-      <ImageList :imageList="dynamicContent.picList"/>
-      <RouteMap :wayinfo="dynamicContent"/>
-      <div class="box-container">
-        <div class="line"></div>
-      </div>
-      <Operate v-waves :countItem="dynamicContent"/>
-      <div class="interval"></div>
-    </div>
-    <div class="comment">
-      <div class="comment-title">
-        全部评论（{{ dynamicContent.userCommentDTOList.length }}）
-      </div>
-      <div v-for="item of dynamicContent.userCommentDTOList" :key="item.id">
+    <quick-loadmore
+      ref="vueLoad"
+      :bottom-method="handleBottom"
+      :bottomDistance="80"
+      :disable-bottom="false"
+      :disable-top="true"
+      style="margin-bottom: 10px;"
+    >
+      <div class="container">
         <user-info
-          :showLike="true"
-          :userinfo="item"
+          :userinfo="dynamicContent"
           @clickAvatar="clickAvatar"
           @clickCared="clickCared"
         />
-        <div class="comment-content">{{ item.content }}</div>
-        <div class="comment-line">
+        <div class="content" v-html="dynamicContent.content"/>
+        <ImageList :imageList="dynamicContent.picList"/>
+        <RouteMap :wayinfo="dynamicContent"/>
+        <div class="box-container">
           <div class="line"></div>
         </div>
+        <Operate v-waves :countItem="dynamicContent"/>
+        <div class="interval"></div>
       </div>
-      <div class="more-comment" @click="dnApp">
-        <div>查看更多评论</div>
-        <img src="../../assets/way/dynamic/right-arrow.png"/>
+      <div v-if="dynamicContent.userCommentDTOList" class="comment">
+        <div class="comment-title">
+          全部评论（{{ dynamicContent.userCommentDTOList.length }}）
+        </div>
+        <div v-for="item of dynamicContent.userCommentDTOList" :key="item.id">
+          <user-info
+            :showLike="true"
+            :userinfo="item"
+            @clickAvatar="clickAvatar"
+            @clickCared="clickCared"
+          />
+          <div class="comment-content">{{ item.content }}</div>
+          <div class="comment-line">
+            <div class="line"></div>
+          </div>
+        </div>
+        <div class="more-comment" @click="dnApp">
+          <div>查看更多评论</div>
+          <img src="../../assets/way/dynamic/right-arrow.png"/>
+        </div>
       </div>
-    </div>
-    <img src="../../assets/way/dynamic/pic.png"/>
+      <img src="../../assets/way/dynamic/pic.png"/>
+    </quick-loadmore>
     <AppBottomBtn/>
   </div>
 </template>
@@ -71,33 +80,36 @@ export default {
     RouteMap,
     ImageList
   },
-  data () {
+  data() {
     return {
       dynamicId: '',
       dynamicContent: {}
     }
   },
-  mounted () {
+  mounted() {
     this.dynamicId = this.$route.query.id
     getDynamicDetailApi(this.dynamicId).then(res => {
       this.dynamicContent = res
     })
   },
   methods: {
-    clickCared () {
+    clickCared() {
       this.dnApp()
     },
-    showComment () {
+    showComment() {
       this.dnApp()
     },
-    clickLike () {
+    clickLike() {
       this.dnApp()
     },
-    clickAvatar () {
+    clickAvatar() {
       this.dnApp()
     },
-    dnApp () {
+    dnApp() {
       window.location.href = appPkgUrl
+    },
+    handleBottom() {
+      console.log('到底')
     }
   },
   directives: {
