@@ -80,35 +80,36 @@ export default {
     RouteMap,
     ImageList
   },
-  data() {
+  data () {
     return {
       dynamicId: '',
       dynamicContent: {}
     }
   },
-  mounted() {
+  mounted () {
+    console.log('2021年07月22日17:42:02')
     this.dynamicId = this.$route.query.id
     getDynamicDetailApi(this.dynamicId).then(res => {
       this.dynamicContent = res
     })
   },
   methods: {
-    clickCared() {
+    clickCared () {
       this.dnApp()
     },
-    showComment() {
+    showComment () {
       this.dnApp()
     },
-    clickLike() {
+    clickLike () {
       this.dnApp()
     },
-    clickAvatar() {
+    clickAvatar () {
       this.dnApp()
     },
-    dnApp() {
+    dnApp () {
       window.location.href = appPkgUrl
     },
-    handleBottom() {
+    handleBottom () {
       console.log('到底')
     }
   },

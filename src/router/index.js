@@ -19,6 +19,27 @@ const router = new Router({
       component: (resolve) => {
         require(['@/views/shareTopic/index'], resolve)
       }
+    },
+    {
+      path: '/common_problem', // 常见问题
+      name: 'common_problem',
+      component: (resolve) => {
+        require(['@/views/commonProblem/index'], resolve)
+      }
+    },
+    {
+      path: '/changePhoneNumber', // 更改手机号
+      name: 'changePhoneNumber',
+      component: (resolve) => {
+        require(['@/views/commonProblem/changePhoneNumber/index'], resolve)
+      }
+    },
+    {
+      path: '/avatarProblem', // 更改手机号
+      name: 'avatarProblem',
+      component: (resolve) => {
+        require(['@/views/commonProblem/avatarProblem/index'], resolve)
+      }
     }
     // {
     //   path: '/sharedetail', // 分享的详情页 ()

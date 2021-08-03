@@ -23,7 +23,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/DEV_API': {
-        target: 'http://api-test.woshunlu.com',
+        target: 'http://api.woshunlu.com',
         // target: 'http://192.168.0.156:9999',
         changeOrigin: true,//允许跨域
         pathRewrite:{
