@@ -40,6 +40,19 @@ const router = new Router({
       component: (resolve) => {
         require(['@/views/commonProblem/avatarProblem/index'], resolve)
       }
+    }, {
+      path: '/privacy', // 隐私政策
+      name: 'privacy',
+      component: (resolve) => {
+        require(['@/views/aboutus/privacy/index'], resolve)
+      }
+    },
+    {
+      path: '/useRule', // 使用协议
+      name: 'useRuleIos',
+      component: (resolve) => {
+        require(['@/views/aboutus/useRule/ios'], resolve)
+      }
     }
     // {
     //   path: '/sharedetail', // 分享的详情页 ()
